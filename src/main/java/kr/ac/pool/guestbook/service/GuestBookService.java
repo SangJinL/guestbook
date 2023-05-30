@@ -8,6 +8,11 @@ import kr.ac.pool.guestbook.entity.GuestBook;
 public interface GuestBookService {
     Long register(GuestBookDTO dto);
     PageResultDTO<GuestBookDTO, GuestBook> getList(PageRequestDTO requestDTO);
+    GuestBookDTO read(Long gno);
+
+    void modify(GuestBookDTO dto);
+    void remove(Long gno);
+
     default GuestBook dtoToEntity(GuestBookDTO dto){
         GuestBook entity = GuestBook.builder()
                 .gno(dto.getGno())
