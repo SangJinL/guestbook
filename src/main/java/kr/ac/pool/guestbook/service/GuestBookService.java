@@ -1,5 +1,6 @@
 package kr.ac.pool.guestbook.service;
 
+import com.querydsl.core.BooleanBuilder;
 import kr.ac.pool.guestbook.dto.GuestBookDTO;
 import kr.ac.pool.guestbook.dto.PageRequestDTO;
 import kr.ac.pool.guestbook.dto.PageResultDTO;
@@ -12,6 +13,7 @@ public interface GuestBookService {
 
     void modify(GuestBookDTO dto);
     void remove(Long gno);
+    BooleanBuilder getSearch(PageRequestDTO requestDTO);
 
     default GuestBook dtoToEntity(GuestBookDTO dto){
         GuestBook entity = GuestBook.builder()
