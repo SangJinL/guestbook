@@ -6,9 +6,11 @@
     <h1 class="mt-4">GuestBook Modify Page</h1>
     <form action="/guestbook/modify" method="post">
       <input type="hidden" name="page" th:value="${requestDTO.page}">
+      <input type="hidden" name="type" th:value="${requestDTO.type}">
+      <input type="hidden" name="keyword" th:value="${requestDTO.keyword}">
     <div class="form-group">
       <label>Gno</label>
-      <input type="text" class="form-control" name="gno" th:value="${dto.gno}">
+      <input type="text" class="form-control" name="gno" th:value="${dto.gno}"readonly>
     </div>
     <div class="form-group">
       <label>Title</label>
@@ -16,7 +18,7 @@
     </div>
     <div class="form-group">
       <label>Content</label>
-      <textarea class="form-control" name="content" rows="5" readonly>[[${dto.content}]]</textarea>
+      <textarea class="form-control" name="content" rows="5" >[[${dto.content}]]</textarea>
     </div>
       <div class="form-group">
         <label>RegDate</label>
@@ -24,11 +26,11 @@
       </div>
     <div class="form-group">
       <label>Writer</label>
-      <input type="text" class="form-control" name="writer" th:value="${dto.writer}" readonly>
+      <input type="text" class="form-control" name="writer" th:value="${dto.writer}">
     </div>
       <div class="form-group">
         <label>MoDate</label>
-        <input type="text" class="form-control" name="moDate" rows="5" th:value="${dto.moDate}" readonly>
+        <input type="text" class="form-control" name="modDate" rows="5" th:value="${dto.modDate}" readonly>
       </div>
 
     </form>
@@ -54,6 +56,22 @@
     actionForm
             .attr("action", "/guestbook/modify")
             .attr("method", "post")
+            .submit();
+  })
+
+  $(".listBtn").click(function (){
+    var page = $("input[name='page']");
+    var type = $("input[name='type']");
+    var keyword = $("input[name='keyword']");
+
+    actionForm.empty();
+    actionForm.append(page);
+    actionForm.append(type);
+    actionForm.append(keyword);
+
+    actionForm
+            .attr("action", "/guestbook/list")
+            .attr("method", "get")
             .submit();
   })
 </script>

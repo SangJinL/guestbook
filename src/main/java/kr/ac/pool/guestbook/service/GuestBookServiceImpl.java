@@ -56,6 +56,7 @@ public class GuestBookServiceImpl implements GuestBookService{
             GuestBook entity = result.get();
             entity.changeTitle(dto.getTitle());
             entity.changeContent(dto.getContent());
+            entity.changeWriter(dto.getWriter());
             repositoty.save(entity);
         }
     }
